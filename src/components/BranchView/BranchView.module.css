@@ -1,0 +1,33 @@
+svg {
+    width: 100%; /* Set the width to 100% of its parent container */
+    height: 100%; /* Set the height to 100% of its parent container */
+    margin: 0 auto; /* Center the graph horizontally */
+    display: block; /* Remove the default inline display */
+    position: absolute;
+
+}
+
+rect {
+    fill: #fff; /* Set the fill color of the nodes to white */
+    stroke: #333; /* Set the stroke color of the nodes to dark gray */
+    stroke-width: 1.5px; /* Set the stroke width of the nodes to 1.5 pixels */
+}
+
+path {
+    stroke: #333; /* Set the stroke color of the edges to dark gray */
+    stroke-width: 1.5px; /* Set the stroke width of the edges to 1.5 pixels */
+    fill: black;
+}
+tspan{
+    background: white;
+}
+
+svg.g{
+    width: 100%; /* Set the width to 100% of its parent container */
+    height: 100%; /* Set the height to 100% of its parent container */
+    margin: 0 auto; /* Center the graph horizontally */
+    display: block; /* Remove the default inline display */
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
