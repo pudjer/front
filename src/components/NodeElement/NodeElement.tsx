@@ -2,7 +2,7 @@ import {INode} from "../../models/Branch";
 import {BackendUrl} from "../../services/domainname";
 
 
-function NodeElement(node: INode, router:(a:string)=>()=>void): HTMLElement {
+function NodeElement(node: INode, router:(a:string)=>()=>void): [HTMLElement, ()=>void] {
     const { title, author, slug, karma } = node;
 
     const container = document.createElement('div');
@@ -12,12 +12,13 @@ function NodeElement(node: INode, router:(a:string)=>()=>void): HTMLElement {
     container.style.padding = '10px';
     container.style.margin = '10px';
 
-    const titleElem = document.createElement('h2');
+    const titleElem = document.createElement('div');
     titleElem.textContent = title;
     titleElem.addEventListener('click', router('/node/'+slug+'/show_branch'));
     titleElem.style.margin = '0';
-    titleElem.style.wordWrap = 'normal';
+    titleElem.style.wordWrap = 'break-word';
     titleElem.style.width = '20ch';
+
 
     container.appendChild(titleElem);
 
@@ -31,6 +32,6 @@ function NodeElement(node: INode, router:(a:string)=>()=>void): HTMLElement {
     karmaElem.style.margin = '5px 0';
     container.appendChild(karmaElem);
 
-    return container;
+    return [container, () => titleElem.removeEventListener('click', router('/node/'+slug+'/show_branch'))];
 }
 export default NodeElement;
