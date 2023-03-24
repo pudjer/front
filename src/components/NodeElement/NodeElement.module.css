@@ -1,0 +1,13 @@
+.conteiner {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    padding: 10px;
+    margin: 10px;
+    width: 200px;
+    word-wrap: break-word;
+;
+}
+.conteiner div{
+    word-wrap: break-word;
+}
