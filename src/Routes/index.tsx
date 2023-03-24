@@ -8,3 +8,7 @@ export const routes = [
     {path: '/*', component: NotFoundPage},
 
 ]
+
+export const CreatePathToBranch = (slug:string):string=>{
+    return '/node/'+slug+'/show_branch'
+}
