@@ -4,23 +4,22 @@ svg.dag {
     margin: 0 auto; /* Center the graph horizontally */
     display: block; /* Remove the default inline display */
     position: absolute;
+    background: darkgray;
 
 }
 
-g.glob rect {
-    fill: #fff; /* Set the fill color of the nodes to white */
+g.glob circle { /* Set the fill color of the nodes to white */
     stroke: #333; /* Set the stroke color of the nodes to dark gray */
     stroke-width: 1.5px; /* Set the stroke width of the nodes to 1.5 pixels */
+    fill: dimgrey;
 }
 
 g.glob path {
-    stroke: #333; /* Set the stroke color of the edges to dark gray */
-    stroke-width: 1.5px; /* Set the stroke width of the edges to 1.5 pixels */
-    fill: black;
+    stroke: black; /* Set the stroke color of the edges to dark gray */
+    stroke-width: 5px; /* Set the stroke width of the edges to 1.5 pixels */
+    fill: white;
 }
-g.glob tspan{
-    background: white;
-}
+
 
 g.glob{
     width: 100%; /* Set the width to 100% of its parent container */
@@ -29,3 +28,9 @@ g.glob{
     display: block; /* Remove the default inline display */
     position: absolute;
 }
+g.glob foreignObject {
+    width: 800px;
+    height: 800px;
+    overflow: hidden;
+}
+

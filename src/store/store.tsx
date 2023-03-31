@@ -1,9 +1,13 @@
 import {combineReducers} from "redux";
 import {configureStore} from "@reduxjs/toolkit";
 import {branchApi} from "../services/branchApi";
+import userReducer from "./reducers/userReducer";
+
 
 const rootReducer = combineReducers({
-    [branchApi.reducerPath]: branchApi.reducer
+    [branchApi.reducerPath]: branchApi.reducer,
+    auth: userReducer
+
 });
 
 export const setupStore = () =>{

@@ -1,0 +1,41 @@
+.root {
+  margin: 110px;
+  width: 600px;
+  height: 600px;
+  word-wrap: break-word;         /* All browsers since IE 5.5+ */
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+h3 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+p:not(:last-child) {
+  margin-bottom: 8px;
+}
+
+button {
+  margin-right: 8px;
+  padding: 8px 16px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #1e90ff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #187bcd;
+}

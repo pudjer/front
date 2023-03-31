@@ -16,7 +16,8 @@ const BranchView = () => {
         <>
             {isLoading && 'LOADING'}
             {error && 'ERROR'}
-            <DAG data={data}/>
+            {data && <DAG data={data}/>}
+
         </>
     );
 };

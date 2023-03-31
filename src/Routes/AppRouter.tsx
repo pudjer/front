@@ -1,12 +1,16 @@
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import React from "react";
-import {routes} from "./index";
+import {anonroutes, authroutes} from "./index";
+import {useAppSelector} from "../hooks/redux";
 
-function AppRouter() {
 
+function AppRouter(){
+    const isAuth = useAppSelector(store => store.auth.isAuthenticated)
     return <BrowserRouter>
             <Routes>
-                {routes.map((route, index) => <Route
+                {isAuth && authroutes.map((route, index) => <Route
+                    key={index} Component={route.component} path={route.path}/>)}
+                {!isAuth && anonroutes.map((route, index) => <Route
                     key={index} Component={route.component} path={route.path}/>)}
             </Routes>
         </BrowserRouter>
