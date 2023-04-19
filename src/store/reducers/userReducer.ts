@@ -4,7 +4,16 @@ import AuthService from "../../services/auth/authService";
 import {AppDispatch} from "../store";
 import {IUser} from "../../models/User";
 
-const initialState = {
+interface IAuthState{
+    user: IUser | {},
+    isAuthenticated: boolean,
+    isLoading: boolean,
+    error: string
+}
+
+
+
+const initialState:IAuthState = {
     user: {},
     isAuthenticated: false,
     isLoading: false,
@@ -35,20 +44,10 @@ const authSlice = createSlice({
 
 export const { loginRequest, loginSuccess, loginFailure, logoutUser } = authSlice.actions;
 
-export const setUser = () => async (dispatch:AppDispatch) => {
-    dispatch(loginRequest());
-    try {
-        const user = await AuthService.getUser()
-        dispatch(loginSuccess(user));
-    } catch (e) {
-            dispatch(loginFailure(e));
-    }
-}
 
-export const login = (username:string, password:string) => async (dispatch:AppDispatch) => {
+export const login = () => async (dispatch:AppDispatch) => {
     dispatch(loginRequest());
     try {
-        await AuthService.login(username, password);
         const user = await AuthService.getUser()
         dispatch(loginSuccess(user));
     } catch (e) {

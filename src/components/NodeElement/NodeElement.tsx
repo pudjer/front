@@ -1,5 +1,5 @@
 import {INode} from "../../models/Branch";
-import {CreatePathToBranch} from "../../Routes";
+import {CreatePathToBranch} from "../../routes";
 import styles from './NodeElement.module.css'
 
 

@@ -6,27 +6,21 @@ import {BackendUrl} from "../domainname";
 
 export default class AuthService {
     static async login(username: string, password: string): Promise<void> {
-        try {
-            const response = await axios.post<LoginResponse>(BackendUrl+'auth/jwt/create/', {username, password})
-            localStorage.setItem('token', response.data.access);
-            localStorage.setItem('refreshToken', response.data.refresh);
-        }catch (e){
-            console.error(e)
-        }
-
+        const response = await axios.post<LoginResponse>(BackendUrl+'auth/jwt/create/', {username, password})
+        localStorage.setItem('token', response.data.access);
+        localStorage.setItem('refreshToken', response.data.refresh);
     }
 
-    static async registration(email: string, username: string, password: string): Promise<RegistrationResponse> {
-        return api.post<RegistrationResponse>('auth/users/', {email, username, password})
-            .then(response => response.data)
+
+    static async registration(email: string, username: string, password: string): Promise<void> {
+        await api.post<RegistrationResponse>('auth/users/', {email, username, password})
+        await this.login(username, password)
     }
+
 
     static async getUser(): Promise<IUser> {
-
         const response =  await api.get('common/user/')
         return response.data
-
-
     }
 
 }

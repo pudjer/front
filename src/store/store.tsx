@@ -1,6 +1,6 @@
 import {combineReducers} from "redux";
 import {configureStore} from "@reduxjs/toolkit";
-import {branchApi} from "../services/branchApi";
+import {branchApi} from "../services/BranchApi/branchApi";
 import userReducer from "./reducers/userReducer";
 
 

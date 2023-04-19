@@ -1,4 +1,4 @@
-import axios, {AxiosError} from 'axios';
+import axios from 'axios';
 import {BackendUrl} from "../domainname";
 import {LoginResponse} from "../../models/LoginResponse";
 
@@ -26,7 +26,7 @@ api.interceptors.response.use(
             originalRequest._retry = true;
             try {
                 // Replace 'refresh' with the correct path to your refresh endpoint
-                const response = await api.post<LoginResponse>('auth/jwt/refresh/', {
+                const response = await axios.post<LoginResponse>(BackendUrl+'auth/jwt/refresh/', {
                     // Add any required data for refreshing the token
                     refresh: localStorage.getItem('refreshToken'),
                 });

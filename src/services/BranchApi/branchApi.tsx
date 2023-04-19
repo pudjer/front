@@ -1,6 +1,6 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/dist/query/react";
-import {BackendUrl} from "./domainname";
-import {IGraph, INode} from "../models/Branch";
+import {BackendUrl} from "../domainname";
+import {IGraph, INode} from "../../models/Branch";
 
 
 export const branchApi = createApi({
@@ -18,6 +18,14 @@ export const branchApi = createApi({
             query: (slug) => ({
                 url: 'nodes/node/'+slug+'/'
             })
+        }),
+
+        createNode: build.mutation<INode, INode>({
+                query: (body) => ({
+                    url: `node/`,
+                    method: 'POST',
+                    body,
+                }),
         })
     })
 

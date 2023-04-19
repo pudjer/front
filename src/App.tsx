@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import AppRouter from "./Routes/AppRouter";
+import AppRouter from "./routes/AppRouter";
 import {useAppDispatch, useAppSelector} from "./hooks/redux";
-import {setUser} from "./store/reducers/userReducer";
-
+import {login} from "./store/reducers/userReducer";
 
 
 
@@ -10,14 +9,13 @@ function App() {
     const auth = useAppSelector(store=>store.auth)
     const dispatch = useAppDispatch()
     useEffect(()=>{
-
         if(!auth.isAuthenticated){
-            dispatch(setUser())
+            dispatch(login())
         }
     }, [])
-
     return <>
-            <AppRouter/>
+        {!auth.isLoading && <AppRouter/>}
+        {auth.error && auth.error}
     </>
 
 }

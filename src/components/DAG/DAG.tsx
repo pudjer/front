@@ -1,11 +1,15 @@
 import * as d3 from 'd3';
 import dagreD3 from 'dagre-d3';
-import {useEffect, useState} from "react";
+import {PropsWithoutRef, useEffect, useState} from "react";
 import styles from './DAG.module.css'
 import {IGraph} from "../../models/Branch";
 import SmallNode from "../NodeComponent/SmallNode";
 import {createPortal} from "react-dom";
 
+
+interface DAGprops extends PropsWithoutRef<any>{
+    data: IGraph
+}
 
 const createDOMNode = (id:any) =>{
     const container = document.createElement('div')
@@ -15,7 +19,7 @@ const createDOMNode = (id:any) =>{
 
 
 
-const DAG = ({data}:{data:IGraph}) => {
+const DAG = ({data, className}:DAGprops) => {
 
     const [state, setState] = useState([])
 
@@ -41,7 +45,6 @@ const DAG = ({data}:{data:IGraph}) => {
             const svg = d3.select("svg."+styles.dag)
             const gg = d3.select("g."+styles.glob);
 
-// Run the renderer. This is what draws the final graph.
 
             var render = new dagreD3.render();
             render(gg as any, g as any);
@@ -56,7 +59,6 @@ const DAG = ({data}:{data:IGraph}) => {
             }
             const zoom = d3.zoom()
                 .on("zoom", zoomed)
-
 
 
             // @ts-ignore
@@ -82,7 +84,7 @@ const DAG = ({data}:{data:IGraph}) => {
 
 
 
-    return <>
+    return <div className={className}>
         { state.length===data.nodes.length && state.map((cont,index)=>
             createPortal(<SmallNode node={data.nodes[index]} key={data.nodes[index].id}/>, cont))
 
@@ -90,7 +92,7 @@ const DAG = ({data}:{data:IGraph}) => {
             <svg className={styles.dag}>
                 <g className={styles.glob}/>
             </svg>
-        </>
+        </div>
 
 };
 

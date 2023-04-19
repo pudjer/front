@@ -5,7 +5,6 @@ svg.dag {
     display: block; /* Remove the default inline display */
     position: absolute;
     background: darkgray;
-
 }
 
 g.glob circle { /* Set the fill color of the nodes to white */

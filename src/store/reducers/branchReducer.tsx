@@ -7,7 +7,7 @@ interface BranchesState{
     isLoading: boolean;
     error: string;
 
-};
+}
 
 const initialState:BranchesState = {
     branches: [],

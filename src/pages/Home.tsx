@@ -1,22 +1,17 @@
 import {useAppSelector} from "../hooks/redux";
-import {Simulate} from "react-dom/test-utils";
-import error = Simulate.error;
 import {useAppDispatch} from "../hooks/redux";
 import {logout} from "../store/reducers/userReducer";
-import Login from "../components/Login";
+import LoginPage from "./LoginPage";
+import Profile from "../components/Profile/Profile";
+import {IUser} from "../models/User";
 
 
 const Home = () =>{
     const auth = useAppSelector(state => state.auth)
-    const dispath = useAppDispatch()
-    const Logout = () =>{
-    dispath(logout())
-    }
+
 
     return <>
-        {auth.isAuthenticated && <button onClick={Logout}>logout</button>}
-        {auth.isAuthenticated && JSON.stringify(auth.user)}
-        {!auth.isAuthenticated && <Login/>}
+        <Profile user={auth.user as IUser}/>
     </>
 }
 
