@@ -8,12 +8,12 @@ import ArticleEditor from "../components/ArticleEditor/ArticleEditor";
 
 interface IRoute {
     path: string
-    component: React.FC
+    component: React.ReactNode
 }
 
 
 
-export const routes = [
+export const routes: IRoute[] = [
     {path: '/node/:slug/show_branch', component: <BranchView/>},
     {path: '/*', component: <NotFoundPage/>},
     {path: '', component: <AuthHoc><Home/></AuthHoc>},

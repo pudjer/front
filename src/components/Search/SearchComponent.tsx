@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState} from 'react';
 import axios from 'axios';
-import { AutoComplete, Input, SelectProps } from 'antd';
+import { AutoComplete, Input} from 'antd';
 import { INode } from '../../models/Branch';
 import {debounce} from "../../utils/debounce";
 import {useNavigate} from "react-router-dom";
-import {BackendUrl} from "../../services/domainname";
 import Label from "./Label";
 
 const SearchComponent: React.FC = () => {
@@ -23,7 +22,6 @@ const SearchComponent: React.FC = () => {
                 ...node
             }));
         } catch (error) {
-            console.error('Error fetching articles:', error);
             return [];
         }
     };
