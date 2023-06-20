@@ -11,7 +11,6 @@ export interface IBranch{
     links: IBranch[];
     language: string;
     karma: number;
-    contentlen: number;
     time_create: string;
     time_update: string;
     tags: string[]
@@ -29,7 +28,6 @@ export interface INode{
     links: string[];
     language: string;
     karma: number;
-    contentlen: number;
     time_create: string;
     time_update: string;
     tags: string[]

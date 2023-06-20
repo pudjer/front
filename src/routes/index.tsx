@@ -5,6 +5,7 @@ import React from "react";
 import LoginPage from "../pages/LoginPage";
 import AuthHoc from "../components/Authhoc/AuthHoc";
 import ArticleEditor from "../components/ArticleEditor/ArticleEditor";
+import ReBranchView from "../components/BranchView/ReBranchView";
 
 interface IRoute {
     path: string
@@ -15,6 +16,7 @@ interface IRoute {
 
 export const routes: IRoute[] = [
     {path: '/node/:slug/show_branch', component: <BranchView/>},
+    {path: '/node/:slug/show_rebranch', component: <ReBranchView/>},
     {path: '/*', component: <NotFoundPage/>},
     {path: '', component: <AuthHoc><Home/></AuthHoc>},
     {path: '/login', component: <LoginPage/>},

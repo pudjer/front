@@ -1,26 +1,44 @@
-import React, {useState} from 'react';
-import axios from 'axios';
+import React, {ReactElement, useState} from 'react';
 import { AutoComplete, Input} from 'antd';
-import { INode } from '../../models/Branch';
 import {debounce} from "../../utils/debounce";
-import {useNavigate} from "react-router-dom";
-import Label from "./Label";
 
-const SearchComponent: React.FC = () => {
-    const [options, setOptions] = useState<INode[]>([]);
-    const navigate = useNavigate()
-    const searchBranches = async (value: string) => {
+import {NavigateFunction, useNavigate} from "react-router-dom";
+
+
+interface Item{
+    title:string,
+}
+
+interface PropsNode{
+    node:{title: string}
+
+}
+interface IProps<T> {
+    searchItems: (value: string) => Promise<T[]>;
+    onSelect: (nav: NavigateFunction, value: string, option: T) => void;
+    item?: React.FC<PropsNode>;
+}
+
+const SearchComponent: React.FC<IProps<any>> = (props) => {
+    const [options, setOptions] = useState<[]>([]);
+    const nav = useNavigate()
+    const SearchRes = (nodes:Item[]) => {
+
+
+
+        return nodes.map((node) => ({
+            label: (  // @ts-ignore
+                <props.item node={node} />
+            ),
+            value: node.title,
+            ...node
+        }));
+    }
+
+    const searchBranches:(a:string)=>Promise<any> = async (value: string) => {
         try {
-            const response = await axios.get<INode[]>(
-                `http://127.0.0.1:8000/search/node/?query=${value}`,
-            );
-            return response.data.map((node:INode) => ({
-                label: (
-                    <Label node={node}/>
-                ),
-                value: node.title,
-                ...node
-            }));
+            const response = await props.searchItems(value)
+            return SearchRes(response)
         } catch (error) {
             return [];
         }
@@ -29,24 +47,21 @@ const SearchComponent: React.FC = () => {
     const handleSearch = async (value: string) => {
         const deb = debounce(async (value) => {
             const articles = await searchBranches(value);
-            setOptions(value ? articles : [])}, 1000)
+            if(value){
+                setOptions(articles)
+            }
+            }, 1000)
         deb(value)
 
     };
 
-    const onSelect = (value: string, option: INode) => {
-        // Perform actions with the selected option
-        // For example, navigate to the article page using the id property
-        navigate(`node/${option.slug}/show_branch`)
-
-    };
 
     return (
         <AutoComplete
             dropdownMatchSelectWidth={252}
             style={{ width: 300 }}
             options={options}
-            onSelect={onSelect}
+            onSelect={(value, option)=>props.onSelect(nav, value, option)}
             onChange={handleSearch}
         >
             <Input.Search size="large" placeholder="input here" enterButton />

@@ -1,10 +1,10 @@
-import {INode} from "../../models/Branch";
 
 interface PropsNode{
-    node: INode
+    node:{title: string}
+
 }
 
-const Label = (props: PropsNode) => {
+const Label: React.FC<PropsNode>= (props: PropsNode) => {
     return <div>
         {props.node.title}
     </div>

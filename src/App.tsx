@@ -11,6 +11,9 @@ function App() {
     useEffect(()=>{
             dispatch(login())
     }, [])
+
+
+
     return <>
         {!auth.isLoading && <AppRouter/>}
         {auth.error && auth.error}

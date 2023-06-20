@@ -20,7 +20,7 @@ const createDOMNode = (id:any) =>{
 
 
 const DAG = ({data, className}:DAGprops) => {
-
+    console.log(data)
     const [state, setState] = useState([])
 
     useEffect(() => {
@@ -81,7 +81,6 @@ const DAG = ({data, className}:DAGprops) => {
 
         }
     }, [data]);
-
 
 
     return <div className={className}>

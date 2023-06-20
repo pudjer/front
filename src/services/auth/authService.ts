@@ -13,7 +13,7 @@ export default class AuthService {
 
 
     static async registration(email: string, username: string, password: string): Promise<void> {
-        await api.post<RegistrationResponse>('auth/users/', {email, username, password})
+        await axios.post<RegistrationResponse>('auth/users/', {email, username, password})
         await this.login(username, password)
     }
 

@@ -10,7 +10,7 @@ const SmallNode = ({ node }: NodeProps) => {
         <div className={styles.root}>
             <h3>{node.title}</h3>
             <p>Author: {JSON.stringify(node.author)}</p>
-            <p>Content length: {node.contentlen}</p>
+            <p>Karma: {node.karma}</p>
             <p>Likes: {node.likes}</p>
             <p>Views: {node.views}</p>
             <p>Language: {node.language}</p>

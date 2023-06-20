@@ -13,6 +13,11 @@ export const branchApi = createApi({
                 url: 'nodes/node/'+slug+'/show_branch/'
             })
         }),
+        fetchreBranch: build.query<IGraph, string>({
+            query: (slug) => ({
+                url: 'nodes/node/'+slug+'/show_rebranch/'
+            })
+        }),
 
         fetchNode: build.query<INode, string>({
             query: (slug) => ({
